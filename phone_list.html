@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Telefones - Estilo Naruto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Naruto+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9e0ae;
+            font-family: 'Naruto One', sans-serif;
+            color: #4a2c2a;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffd27f;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin-top: 5px;
+            border: 2px solid #4a2c2a;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4a2c2a;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff9900;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #4a2c2a;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4a2c2a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Telefones </h1>
+        <form id="phoneForm">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Telefone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="type">Tipo:</label>
+            <select id="type" name="type">
+                <option value="celular">Celular</option>
+                <option value="fixo">Fixo</option>
+            </select>
+
+            <button type="button" id="addContact">Adicionar Contato</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody id="contactsTable">
+                <!-- Contatos aparecerão aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('addContact').addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const type = document.getElementById('type').value;
+
+            if (name && phone) {
+                const table = document.getElementById('contactsTable');
+                const row = table.insertRow();
+
+                const cellName = row.insertCell(0);
+                const cellPhone = row.insertCell(1);
+                const cellType = row.insertCell(2);
+
+                cellName.textContent = name;
+                cellPhone.textContent = phone;
+                cellType.textContent = type;
+
+                // Clear form fields
+                document.getElementById('phoneForm').reset();
+            } else {
+                alert('Por favor, preencha todos os campos!');
+            }
+        });
+    </script>
+</body>
+</html>
